@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "invisiblehitboxes",
+  "version": "${version}",
+  "name": "Invisible Hitboxes",
+  "description": "Draws the hitbox outline of invisible entities (players, mobs, armor stands). Client side, visual only.",
+  "authors": ["You"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.example.invisiblehitboxes.InvisibleHitboxesClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.1",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
