@@ -40,8 +40,6 @@ public class InvisibleHitboxesClient implements ClientModInitializer {
     private static final int COLOR = 0xFFFF3030;       // ARGB, red
     private static final int COLOR_OFFSET = 0xFF30FF30; // green: drawn with the camera offset applied
     private static final float LINE_WIDTH = 3.0f;
-    private static int foundCount = 0;
-    private static int tickCounter = 0;
 
     private static boolean enabled = false;
     private static KeyMapping toggleKey;
@@ -61,11 +59,6 @@ public class InvisibleHitboxesClient implements ClientModInitializer {
                     mc.player.sendSystemMessage(Component.literal(
                             "[Invisible Hitboxes] " + (enabled ? "ON" : "OFF")));
                 }
-            }
-            // Diagnostic: every 5 seconds show how many invisible entities the game currently sees.
-            if (enabled && mc.player != null && ++tickCounter % 100 == 0) {
-                mc.player.sendSystemMessage(Component.literal(
-                        "[Invisible Hitboxes] invisible entities found: " + foundCount));
             }
         });
 
@@ -92,7 +85,6 @@ public class InvisibleHitboxesClient implements ClientModInitializer {
         List<Entity> nearby = level.getEntities(self, self.getBoundingBox().inflate(RANGE),
                 e -> e.isInvisible() && e.isAlive());
 
-        foundCount = nearby.size();
         Vec3 cam = mc.gameRenderer.mainCamera().position();
 
         for (Entity e : nearby) {
